@@ -4,81 +4,81 @@
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><h2 class="headerTitle">Relay</h2></a><a href="/en/versions"><h3>v7.1.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/introduction-to-relay" target="_self">Docs</a></li><li class=""><a href="/en/help" target="_self">Help</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/facebook/relay" target="_self">GitHub</a></li><li class=""><a target="_self"></a></li></ul></nav></div></header></div></div><div class="navPusher"><div><div class="homeContainer"><div class="homeSplashFade"><div class="logo"><img src="/img/relay-white.svg"/></div><div class="wrapper homeWrapper"><h2 class="projectTitle">Relay<small>A Composable GraphQL API Client.</small><small>Like React, but for your data.</small></h2></div></div></div><div class="mainContainer"><div class="container introSection lightBackground"><div class="wrapper"><div class="gridBlock"><div class="blockElement twoByGridBlock"><div class="blockContent"><div><span><p>Relay provides a structured way to build data-driven React applications safely. </p> <p>Relay does this by letting each component declare the parts of a GraphQL API it needs, and then will handle merging them into query a query and passing that response.</p></span></div></div></div></div></div></div><div class="container exampleSection"><div class="wrapper"><div class="wrapperInner"><div class="radiusRight"><h2>Query Renderer</h2><p>When creating a new screen, you start with a QueryRenderer.</p><p>A <code>QueryRenderer</code> is a React Component at the root of a Relay component tree. It handles fetching your query, and uses the `render` prop to render the resulting data.</p><p>As React components, <code>QueryRenderers</code> can be rendered anywhere that a React component can be rendered, i.e. not just at the top level but *within* other components or containers; for example, to lazily fetch additional data for a popover.</p></div><div class="radiusLeft"><pre><code>
-            import React from &quot;react&quot;
-            import { createFragmentContainer, graphql, QueryRenderer } from &quot;react-relay&quot;
-            import environment from &quot;./lib/createRelayEnvironment&quot;
-            import ArtistHeader from “./ArtistHeader” // Below
-            
-            // You can usually have use one query renderer per page
-            // and it represents the root of a query
-            export const ArtistRenderer = ({ artistID }) =&gt; {
-              return (
-                &lt;QueryRenderer
-                  environment={environment}
-                  query={graphql`
-                    query QueryRenderersArtistQuery($artistID: String!) {
-                      # The root field for the query
-                      artist(id: $artistID) {
-                        # A reference to your fragment components
-                        ...Artist_Header_artist
-                      }
-                    }
-                  `}
-                  variables={{ artistID }}
-                  render={({error, props}) =&gt; {
-                      if (error) {
-                        return &lt;div&gt;{error.message}&lt;/div&gt;;
-                      } else if (props) {
-                        return &lt;Artist artist={props.artist} /&gt;
-                      }
-                      return &lt;div&gt;Loading&lt;/div&gt;;
-                    }}
-                /&gt;
-              )
-            }
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><h2 class="headerTitle">Relay</h2></a><a href="/en/versions"><h3>v7.1.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/introduction-to-relay" target="_self">Docs</a></li><li class=""><a href="/en/help" target="_self">Help</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/facebook/relay" target="_self">GitHub</a></li><li class=""><a target="_self"></a></li></ul></nav></div></header></div></div><div class="navPusher"><div><div class="homeContainer"><div class="homeSplashFade"><div class="logo"><img src="/img/relay-white.svg"/></div><div class="wrapper homeWrapper"><h2 class="projectTitle">Relay<small>A Composable GraphQL API Client.</small><small>Like React, but for your data.</small></h2></div></div></div><div class="homePage mainContainer"><div class="container introSection lightBackground"><div class="wrapper"><div class="gridBlock"><div class="blockElement twoByGridBlock"><div class="blockContent"><div><span><p>Relay provides a structured way to build data-driven React applications safely.</p> <p>Relay does this by letting each React component declare the parts of a GraphQL schema it needs, and then Relay handles merging these fragments into single query and passing the response data to those components.</p><p>This allows you to have a declarative API for your app's data</p></span></div></div></div></div></div></div><div class="container exampleSection"><div class="wrapper"><div class="wrapperInner"><div class="radiusRight"><h2>Query Renderer</h2><p>When creating a new screen, you start with a <a href="/docs/en/query-renderer"><code>QueryRenderer</code></a>.</p><p>A <code>QueryRenderer</code> is a React Component which is the root of a Relay component tree. It handles fetching your query, and uses the <code>render</code> prop to render the resulting data.</p><p>As React components, <code>QueryRenderers</code> can be rendered anywhere that a React component can be rendered, i.e. not just at the top level but *within* other components or containers. For example, you could use a <code>QueryRenderer</code> to lazily fetch additional data for a popover.</p></div><div class="radiusLeft"><pre><code>
+import React from &quot;react&quot;
+import { createFragmentContainer, graphql, QueryRenderer } from &quot;react-relay&quot;
+import environment from &quot;./lib/createRelayEnvironment&quot;
+import ArtistHeader from “./ArtistHeader” // Below
+
+// You can usually have use one query renderer per page
+// and it represents the root of a query
+export const ArtistRenderer = ({ artistID }) =&gt; {
+  return (
+    &lt;QueryRenderer
+      environment={environment}
+      query={graphql`
+        query QueryRenderersArtistQuery($artistID: String!) {
+          # The root field for the query
+          artist(id: $artistID) {
+            # A reference to your fragment components
+            ...Artist_Header_artist
+          }
+        }
+      `}
+      variables={{ artistID }}
+      render={({error, props}) =&gt; {
+          if (error) {
+            return &lt;div&gt;{error.message}&lt;/div&gt;;
+          } else if (props) {
+            return &lt;Artist artist={props.artist} /&gt;
+          }
+          return &lt;div&gt;Loading&lt;/div&gt;;
+        }}
+    /&gt;
+  )
+}
                   </code></pre></div><div><h2>Fragment Container</h2><p>Step two is to render a tree of React components which includes <code>FragmentContainers</code>, <code>PaginationContainers</code> and <code>RefetchContainers</code>.</p><p>The most common are <code>FragmentContainers</code> which  does not directly fetch data, but instead declares a *specification* of the data needed for rendering a component.</p><p>Relay will then guarantee that this data is available *before* rendering occurs.</p></div><div><pre><code>
-            import React from &quot;react&quot;
-            import { createFragmentContainer, graphql } from &quot;react-relay&quot;
-            import { Link, Image, Name, Bio, View,} from “./views”
-            
-            class ArtistHeader extends React.Component {
-              render() {
-                const { name, href, image, bio } = this.props.artist
-                const imageUrl = image &amp;&amp; image.url
-            
-                return (
-                  &lt;Link href={href}&gt;
-                    &lt;Image imageUrl={imageUrl} /&gt;
-                    &lt;View&gt;
-                      &lt;Name&gt;{name}&lt;/Name&gt;
-                      &lt;Bio&gt;{bio}&lt;/Bio&gt;
-                    &lt;/View&gt;
-                  &lt;/Link&gt;
-                )
-              }
-            }
-            
-            export default createFragmentContainer(
-              Artist,
-              graphql`
-                # When an Artist is requested, explicitly
-                # expose these fields to only the above Component
-                fragment ArtistItem_artist on Artist {
-                  href
-                  bio
-                  name
-                  image {
-                    url
-                  }
-                }
-              `
-            )
-                  </code></pre></div></div></div></div><div class="container textSection graphqlSection lightBackground"><div class="wrapper"><h2>GraphQL Best Practices Baked In</h2><h3>To get the most from Relay’s features, you’ll want your GraphQL server to conform to the Pagination and Global identiifier best practices.</h3><div class="gridBlock"><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Fragments</p>
-</span></div></h2><div><span><p>A GraphQL fragment is a way to name a sub-query inside a part of your GraphQL query.</p><p>Relay uses Fragments to  component to just the data it uses.</p><p>See the <a href="#">Fragment docs</a></p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Connections</p>
-</span></div></h2><div><span><p>A GraphQL Connection is an opinionated list that can easily be paginated in any direction, and contains structure for rich relationship data.</p><p>Relay provides tools to make pagination best practices declarative. </p><p>See the <a href="#">Connections</a> docs</p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Node ID</p>
-</span></div></h2><div><span><p>A Node ID is a globally unique id across your entire schema for every type, built using a GraphQL interface.</p><p>Relay uses thiis pattern to provide reliable cachinig, and make incrrementally updating data simple.</p><p><a href="#">See the Node ID docs</a></p></span></div></div></div></div></div></div><div class="container textSection declarativeSection lightBackground"><div class="wrapper"><h2>Declarative Mutations</h2><div class="gridBlock"><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Describe data changing</p>
-</span></div></h2><div><span><p>The Relay mutation API lets you declaratively define the data which would mutate from a server change by user, and Relay will propate the changes.</p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Non-localised changes</p>
+import React from &quot;react&quot;
+import { createFragmentContainer, graphql } from &quot;react-relay&quot;
+import { Link, Image, Name, Bio, View,} from &quot;./views&quot;
+
+class ArtistHeader extends React.Component {
+  render() {
+    const { name, href, image, bio } = this.props.artist
+    const imageUrl = image &amp;&amp; image.url
+
+    return (
+      &lt;Link href={href}&gt;
+        &lt;Image imageUrl={imageUrl} /&gt;
+        &lt;View&gt;
+          &lt;Name&gt;{name}&lt;/Name&gt;
+          &lt;Bio&gt;{bio}&lt;/Bio&gt;
+        &lt;/View&gt;
+      &lt;/Link&gt;
+    )
+  }
+}
+
+export default createFragmentContainer(
+  Artist,
+  graphql`
+    # When an Artist is requested, explicitly
+    # expose these fields to only the above Component
+    fragment ArtistItem_artist on Artist {
+      href
+      bio
+      name
+      image {
+        url
+      }
+    }
+  `
+)
+                  </code></pre></div></div></div></div><div class="container textSection graphqlSection lightBackground"><div class="wrapper"><h2>GraphQL Best Practices Baked In</h2><h3>To get the most from Relay’s features, you’ll want your GraphQL server to conform to the Pagination and Global identifier best practices.</h3><div class="gridBlock"><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Fragments</p>
+</span></div></h2><div><span><p>A GraphQL fragment is a way to name a sub-query inside a part of your GraphQL query.</p><p>Relay uses Fragments to component to just fetch the data it uses.</p><p>See the <a href=/docs/en/fragment-container>Fragment docs</a></p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Connections</p>
+</span></div></h2><div><span><p>A GraphQL Connection is an opinionated list that can easily be paginated in any direction, and contains structure for rich relationship data.</p><p>Relay provides tools to make pagination best practices declarative. </p><p>See the <a href=/docs/en/graphql-server-specification.html#connections>Connections</a> docs</p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Node ID</p>
+</span></div></h2><div><span><p>A Node ID is a globally unique id across your entire schema for every type, built using a GraphQL interface.</p><p>Relay uses this pattern to provide reliable caching, and make incrementally updating data simple.</p><p><a href=/docs/en/graphql-server-specification.html#object-identification>See the Node ID docs</a></p></span></div></div></div></div></div></div><div class="container textSection declarativeSection lightBackground"><div class="wrapper"><h2>Declarative Mutations</h2><div class="gridBlock"><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Describe data changing</p>
+</span></div></h2><div><span><p>The Relay mutation API lets you declaratively define the data which would mutate from a server change by user, and Relay will propagate the changes.</p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Non-localised changes</p>
 </span></div></h2><div><span><p>Due to the Node ID pattern, Relay can know all of the changed components for any mutation, automating prop updates</p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Optimised for UI</p>
 </span></div></h2><div><span><p>The mutation API makes it trivial to do optimistic rendering, error handling and reverting when things don’t go as planned</p></span></div></div></div></div></div></div><div class="container textSection aheadSection"><div class="wrapper"><h2>Ahead-of-time Safety</h2><div class="gridBlock"><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Peace of Mind</p>
 </span></div></h2><div><span><p>While you work on a Relay project, the Relay compiler will guide you to ensure project-wide consistency.</p></span></div></div></div><div class="blockElement threeByGridBlock"><div class="blockContent"><h2><div><span><p>Runtime Optimised</p>
@@ -86,10 +86,10 @@
 </span></div></h2><div><span><p>Each React component using Relay gets unique Flow or TypeScript interfaces generated.</p></span></div></div></div></div></div></div><div class="container textSection relaySection"><div class="wrapper"><h2>Can Relay Work For Me?</h2><div class="gridBlock"><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Adopt Incrementally</p>
 </span></div></h2><div><span><p>If you already can render React components, you’re most of the way there. Relay requires a Babel plugin, and to also run the Relay Compiler.</p><p>You can use Relay out of the box with Create React App and Next.js.</p></span></div></div></div><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Make Complexity Explicit</p>
 </span></div></h2><div><span><p>Relay requires a bit more up-front setup and tools, in favour of supporting an architecture of isolated components which <a href="#">can scale</a> with your team and app complexity.</p></span></div></div></div><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>User Interface Platform</p>
-</span></div></h2><div><span><p>Relay strives to offer a set of opinionated primtive React components, on which you can build any type of data-driven application.</p><p>Learn these principals once, then your projects spend more time working on business logic instead of pipelining data.</p></span></div></div></div><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Not Just for Big Apps</p>
-</span></div></h2><div><span><p>If you’re the sort of team that believes in using Flow or TypeScript to move error detection to dev-time, then Relay is likely a good fit for you.</p><p>It’s probable you’d otherwise re-create a lot of Relay’s caching, and UI best practices  independently.</p></span></div></div></div></div></div></div><div class="container textSection builtSection lightBackground"><div class="wrapper"><h2>Built for Production</h2><div class="gridBlock"><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Used at Facebook Scale</p>
+</span></div></h2><div><span><p>Relay strives to offer a set of opinionated primitive React components, on which you can build any type of data-driven application.</p><p>Learn these principles once, then spend more time working on business logic instead of pipelining data.</p></span></div></div></div><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Not Just for Big Apps</p>
+</span></div></h2><div><span><p>If you’re the sort of team that believes in using Flow or TypeScript to move error detection to dev-time, then Relay is likely a good fit for you.</p><p>It’s probable you’d otherwise re-create a lot of Relay’s caching, and UI best practices independently.</p></span></div></div></div></div></div></div><div class="container textSection builtSection lightBackground"><div class="wrapper"><h2>Built for Production</h2><div class="gridBlock"><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Used at Facebook Scale</p>
 </span></div></h2><div><span><p>Relay is critical infrastructure in Facebook,  there are tens of thousands of components using it. Relay was built in tandem with GraphQL and has full-time staff working to improve it.</p></span></div></div></div><div class="blockElement twoByGridBlock"><div class="blockContent"><h2><div><span><p>Open Source</p>
-</span></div></h2><div><span><p>The Relay team have a lot to do. So, we rely on the community to help each other and if you encounter problems, you may need to get your hands dirty and help make improvements.</p></span></div></div></div></div></div></div><div class="container textSection"><div class="wrapper"><h2>Proudly Used Elsewhere</h2><h3>Relay was originally created for the React Native sections of the Facebook app, and it has been used adapted and improved by other teams internally and externally.</h3><div class="logos"><a href="https://www.1stdibs.com/"><img src="/img/logos/1stdibs.png" title="1stdibs"/><div><h6>1stdibs</h6><p>Used on 1stdibs.com</p></div></a><a href="http://artsy.github.io/open-source/"><img src="/img/logos/artsy.png" title="Artsy"/><div><h6>Artsy</h6><p>Used on artsy.net, and the React Native iOS app, Eigen.</p></div></a><a href="https://github.com/entria"><img src="/img/logos/entria.png" title="Entria"/><div><h6>Entria</h6><p>Powers x, and y</p></div></a><a href="https://code.facebook.com"><img src="/img/logos/facebook.png" title="Facebook"/><div><h6>Facebook</h6><p>Used on facebook.com, and in the React Native mobile app.</p></div></a><a href="https://www.gatsbyjs.org/"><img src="/img/logos/gatsby.png" title="Gatsby"/><div><h6>Gatsby</h6><p>Underpins the static site generation tool.</p></div></a><a href="https://www.oculus.com/"><img src="/img/logos/oculus.png" title="Oculus"/><div><h6>Oculus</h6><p>Used on oculus.com, Oculus Home in VR, and the React Native Oculus companion app.</p></div></a></div><div class="more-users"><a class="button" href="/en/users">More Relay Users</a></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/relay.svg" alt="Relay" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/introduction-to-relay.html">Introduction</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a></div><div><h5>More</h5><a href="https://github.com/facebook/relay">GitHub</a><a class="github-button" href="https://github.com/facebook/relay" data-icon="octicon-star" data-count-href="/facebook/relay/stargazers" data-count-api="/repos/facebook/relay#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook Inc.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></h2><div><span><p>The Relay team have a lot to do. So, we rely on the community to help each other and if you encounter problems, you may need to get your hands dirty and help make improvements.</p></span></div></div></div></div></div></div><div class="container textSection"><div class="wrapper"><h2>Proudly Used Elsewhere</h2><h3>Relay was originally created for the React Native sections of the Facebook app, and it has been used adapted and improved by other teams internally and externally.</h3><div class="logos"><a href="https://www.1stdibs.com/"><img src="/img/logos/1stdibs.png" title="1stdibs"/><div><h6>1stdibs</h6><p>Used on 1stdibs.com</p></div></a><a href="http://artsy.github.io/open-source/"><img src="/img/logos/artsy.png" title="Artsy"/><div><h6>Artsy</h6><p>Used on artsy.net, and the React Native iOS app, Eigen.</p></div></a><a href="https://github.com/entria"><img src="/img/logos/entria.png" title="Entria"/><div><h6>Entria</h6><p>Powers feedback.house</p></div></a><a href="https://code.facebook.com"><img src="/img/logos/facebook.png" title="Facebook"/><div><h6>Facebook</h6><p>Used on facebook.com, and in the React Native mobile app.</p></div></a><a href="https://www.gatsbyjs.org/"><img src="/img/logos/gatsby.png" title="Gatsby"/><div><h6>Gatsby</h6><p>Underpins the static site generation tool.</p></div></a><a href="https://www.oculus.com/"><img src="/img/logos/oculus.png" title="Oculus"/><div><h6>Oculus</h6><p>Used on oculus.com, Oculus Home in VR, and the React Native Oculus companion app.</p></div></a></div><div class="more-users"><a class="button" href="/en/users">More Relay Users</a></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/relay.svg" alt="Relay" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/introduction-to-relay.html">Introduction</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a></div><div><h5>More</h5><a href="https://github.com/facebook/relay">GitHub</a><a class="github-button" href="https://github.com/facebook/relay" data-icon="octicon-star" data-count-href="/facebook/relay/stargazers" data-count-api="/repos/facebook/relay#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook Inc.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;

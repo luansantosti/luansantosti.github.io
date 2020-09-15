@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{"Cuy+":function(n,t,e){"use strict";e.r(t),e.d(t,"default",(function(){return c}));var r=e("q1tI"),u=e.n(r);e("LbRr");function c(){return u.a.createElement("div",{style:{color:"teal"}},"contact")}},LbRr:function(n,t,e){"use strict";e.d(t,"a",(function(){return c}));var r=e("q1tI"),u=e.n(r);function c(){return u.a.createElement("h1",null,"This is a header.")}}}]);
-//# sourceMappingURL=component---src-pages-contact-js-05f50fa7cc548f6de7d0.js.map

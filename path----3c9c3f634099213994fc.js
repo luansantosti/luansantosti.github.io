@@ -1,2 +1,0 @@
-webpackJsonp([60335399758886],{98:function(t,e){t.exports={data:{site:{siteMetadata:{title:"Luan Santos",description:"Fullstack Developer",url:"http://luansantosti.github.io/",keywords:"Fullstack Developer, Software Enginner, Front-end Developer"}}},layoutContext:{}}}});
-//# sourceMappingURL=path----3c9c3f634099213994fc.js.map
